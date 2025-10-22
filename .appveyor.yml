@@ -1,0 +1,21 @@
+image: Ubuntu2004
+stack: jdk 11
+
+branches:
+  only:
+    - main
+
+build: off
+
+install:
+  - chmod +x gradlew
+  # Сначала устанавливаем зависимости и проверяем сборку
+  - ./gradlew assemble
+
+build_script:
+  # Запускаем приложение в фоне ПЕРЕД тестами
+  - java -jar ./artifacts/app-mbank.jar &
+  - sleep 10  # ждем запуска приложения
+
+  # Запускаем тесты
+  - ./gradlew test --info -Dselenide.headless=true
