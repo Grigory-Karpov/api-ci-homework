@@ -1,1 +1,0 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/xl3acnhntffp0omp?svg=true)](https://ci.appveyor.com/project/littlemortalina/api-ci-homework)
