@@ -8,6 +8,6 @@ jobs:
       - uses: actions/setup-java@v3
         with: { java-version: '11', distribution: 'temurin' }
       - run: chmod +x gradlew
-      - run: java -jar ./artifacts/app-month.jar &
-      - run: sleep 10
+      - run: java -jar ./artifacts/app-mbank.jar &
+      - run: sleep 15
       - run: ./gradlew test --info
