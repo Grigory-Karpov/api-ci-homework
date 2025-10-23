@@ -1,4 +1,6 @@
-image: Ubuntu2004
+# Запускаем сборку на Windows Server 2022
+image: Visual Studio 2022
+
 stack: jdk 11
 
 branches:
@@ -8,14 +10,11 @@ branches:
 build: off
 
 install:
-  - chmod +x gradlew
-  # Сначала устанавливаем зависимости и проверяем сборку
-  - ./gradlew assemble
+  # Запускаем SUT в фоновом режиме, НЕ БЛОКИРУЯ скрипт (флаг /B)
+  - start /B java -jar ./artifacts/app-mbank.jar
+  # Ждем 10 секунд, чтобы приложение успело запуститься
+  - ps: Start-Sleep -s 10
 
 build_script:
-  # Запускаем приложение в фоне ПЕРЕД тестами
-  - java -jar ./artifacts/app-mbank.jar &
-  - sleep 10  # ждем запуска приложения
-
-  # Запускаем тесты
-  - ./gradlew test --info -Dselenide.headless=true
+  # Запускаем тесты с помощью Windows-скрипта gradlew.bat
+  - gradlew.bat test --info
