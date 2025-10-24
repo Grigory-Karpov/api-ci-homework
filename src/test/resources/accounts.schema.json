@@ -21,7 +21,7 @@
       },
       "number": {
         "type": "string",
-        "pattern": "^..\\s*\\\\d{4}$"
+        "pattern": "^••\\s*\\\\d{4}$"
       },
       "balance": {
         "type": "integer"
